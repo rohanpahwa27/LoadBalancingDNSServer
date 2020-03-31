@@ -59,10 +59,8 @@ def server():
 # Define the port on which you want to connect to the server
     # port = rsport
 
-    sa_sameas_myaddr =mysoc.gethostbyname(mysoc.gethostname())
 # connect to the server on local machine
-    server_binding=(sa_sameas_myaddr,50008)
-    ts1.connect(server_binding)
+    ts1.connect((mysoc.gethostbyname(mysoc.gethostname()),50008))
     ts1.settimeout(1)
     ts2.connect((mysoc.gethostbyname(mysoc.gethostname()),50007))
     ts2.settimeout(1)
