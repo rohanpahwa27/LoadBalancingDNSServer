@@ -34,7 +34,7 @@ def server():
         print("[S]: Server socket created")
     except mysoc.error as err:
         print(err)
-    server_binding=('',52799)
+    server_binding=('',lsport)
     ss.bind(server_binding)
     ss.listen(1)
     host=mysoc.gethostname()
@@ -60,9 +60,9 @@ def server():
     # port = rsport
 
 # connect to the server on local machine
-    ts1.connect((mysoc.gethostbyname(mysoc.gethostname()),50008))
+    ts1.connect((mysoc.gethostbyname(ts1host),ts1port))
     ts1.settimeout(1)
-    ts2.connect((mysoc.gethostbyname(mysoc.gethostname()),50007))
+    ts2.connect((mysoc.gethostbyname(ts2host),ts2port))
     ts2.settimeout(1)
 
     num = csockid.recv(1024)
@@ -121,8 +121,14 @@ def server():
 #     to_client = threading.Thread(name='server', target=server)
 #     to_client.start()
 
-to_client = threading.Thread(name='server', target=server)
-to_client.start()
+if (len(sys.argv == 6)):
+    lsport = int(sys.argv[1])
+    ts1host = sys.argv[2]
+    ts1port = int(sys.argv[3])
+    ts2host = sys.argv[4]
+    ts2port = int(sys.argv[5])
+    to_client = threading.Thread(name='server', target=server)
+    to_client.start()
 
 # ts1thread = threading.Thread(name = 'client', target = client(ts1port))
 # ts2thread = threading.Thread(name = 'client', target = client(ts2port))

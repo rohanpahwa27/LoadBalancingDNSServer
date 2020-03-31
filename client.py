@@ -25,8 +25,8 @@ def client():
 
  # Define the port on which you want to connect to the server
     # port = rsport
-    port = 52799
-    sa_sameas_myaddr =mysoc.gethostbyname(mysoc.gethostname())
+    port = lsport
+    sa_sameas_myaddr =mysoc.gethostbyname(lshost)
  # connect to the server on local machine
     server_binding=(sa_sameas_myaddr,port)
     cs.connect(server_binding)
@@ -78,6 +78,9 @@ for j in range(len(CLdict.get('Hostname'))):
 #     tshost = sys.argv[2]
 #     rsthread = threading.Thread(name='client', target=client)
 #     rsthread.start()
+
+lshost = sys.argv[1]
+lsport = int(sys.argv[2])
 
 lsthread = threading.Thread(name='client', target=client)
 lsthread.start()
