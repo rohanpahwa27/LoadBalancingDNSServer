@@ -72,23 +72,39 @@ def server():
     # get data from client.py and send to both top level servers 
     for j in range (int(num)):
         data = csockid.recv(1024)
-        ts1.send(data)
-        ts2.send(data)
+        senddata = data.decode()
+        ts1.send(senddata.encode('utf-8'))
+        ts2.send(senddata.encode('utf-8'))
         time.sleep(0.1)
+        findata1 = ""
+        findata2 = ""
         try:
             ts1data = ts1.recv(1024).decode()
+            findata1 = ts1data
+            #print(findata1, "hello")
         except:
             ts1data = ""
         
         try:
             ts2data = ts2.recv(1024).decode()
+            findata2 = ts2data
+            #print(findata2, "hello")
         except:
             ts2data = ""
         
         if (ts1data == "" and ts2data == ""):
-            print(data.decode(),"-ERROR NOT FOUND")
+            #print(senddata," - ERROR:HOST NOT FOUND")
+            data_to_client = str(senddata) + " " + "-" + " " + "ERROR:HOST NOT FOUND"
+            csockid.send((data_to_client).encode('utf-8'))
         else:
-            print(data.decode(),"hi :)")
+            if(findata2 == "" and findata1 != ""):
+                #print(findata1,"hi :)")
+                data_to_client = findata1
+                csockid.send(data_to_client.encode('utf-8'))
+            else:
+                #print(findata2,"hi :)")
+                data_to_client = findata2
+                csockid.send((data_to_client).encode('utf-8'))
 
    # Close the server socket
     ts1.close()

@@ -42,8 +42,10 @@ def server():
         data = csockid.recv(1024).decode().strip().lower()
         if (data in TS2dict.get("Hostname")):
             index = TS2dict.get("Hostname").index(data)
-            print(data," ",TS2dict.get("IP Address")[index]," ",TS2dict.get("Flag")[index])
-            csockid.send((data+" "+TS2dict.get("IP Address")[index]+" "+TS2dict.get("Flag")[index]).encode())
+            #print(data,TS2dict.get("IP Address")[index],TS2dict.get("Flag")[index])
+            findata = data + " " + TS2dict.get("IP Address")[index] + " " + TS2dict.get("Flag")[index]
+            #print(findata)
+            csockid.send(findata.encode('utf-8'))
         # print(data.decode())
 
    # Close the server socket
@@ -71,7 +73,7 @@ for i in range(3): #traversing over HN, IPADDR, FL, populates RSDict
     if i+1 == 3:
       TS2dict['Flag'].append(data[j][i])
 
-
+print(TS2dict)
 if (len(sys.argv) == 2):
     port = int(sys.argv[1])
     to_client = threading.Thread(name='server', target=server)

@@ -42,8 +42,10 @@ def server():
         data = csockid.recv(1024).decode().strip().lower()
         if (data in TS1dict.get("Hostname")):
             index = TS1dict.get("Hostname").index(data)
-            print(data," ",TS1dict.get("IP Address")[index]," ",TS1dict.get("Flag")[index])
-            csockid.send((data+" "+TS1dict.get("IP Address")[index]+" "+TS1dict.get("Flag")[index]).encode())
+            #print(data,TS1dict.get("IP Address")[index],TS1dict.get("Flag")[index])
+            findata = data+ " " + TS1dict.get("IP Address")[index] + " " + TS1dict.get("Flag")[index]
+            #print(findata)
+            csockid.send(findata.encode('utf-8'))
         # print(data.decode())
         
 
@@ -72,7 +74,7 @@ for i in range(3): #traversing over HN, IPADDR, FL, populates RSDict
     if i+1 == 3:
       TS1dict['Flag'].append(data[j][i])
 
-
+print(TS1dict)
 
 # how to read a text file in python
 # with open("PROJI-DNSRS.txt") as f:

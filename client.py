@@ -43,7 +43,8 @@ def client():
         datasent = CLdict.get('Hostname')[j]
         cs.send(datasent.encode('utf-8'))
         time.sleep(4.1)
-        # data = cs.recv(1024).decode()    
+        data = cs.recv(1024).decode() 
+        f.write(data+"\n")   
     cs.close()
     exit()
 
