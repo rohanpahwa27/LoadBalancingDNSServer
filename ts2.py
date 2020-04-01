@@ -73,7 +73,6 @@ for i in range(3): #traversing over HN, IPADDR, FL, populates RSDict
     if i+1 == 3:
       TS2dict['Flag'].append(data[j][i])
 
-print(TS2dict)
 if (len(sys.argv) == 2):
     port = int(sys.argv[1])
     to_client = threading.Thread(name='server', target=server)

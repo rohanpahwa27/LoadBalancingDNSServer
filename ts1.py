@@ -74,7 +74,6 @@ for i in range(3): #traversing over HN, IPADDR, FL, populates RSDict
     if i+1 == 3:
       TS1dict['Flag'].append(data[j][i])
 
-print(TS1dict)
 
 # how to read a text file in python
 # with open("PROJI-DNSRS.txt") as f:

@@ -79,10 +79,11 @@ for j in range(len(CLdict.get('Hostname'))):
 #     rsthread = threading.Thread(name='client', target=client)
 #     rsthread.start()
 
-lshost = sys.argv[1]
-lsport = int(sys.argv[2])
+if (len(sys.argv) == 3):
+  lshost = sys.argv[1]
+  lsport = int(sys.argv[2])
+  lsthread = threading.Thread(name='client', target=client)
+  lsthread.start()
 
-lsthread = threading.Thread(name='client', target=client)
-lsthread.start()
-        # input("Hit ENTER  to exit")
+# input("Hit ENTER  to exit")
 # exit()

@@ -93,16 +93,16 @@ def server():
             ts2data = ""
         
         if (ts1data == "" and ts2data == ""):
-            #print(senddata," - ERROR:HOST NOT FOUND")
+            print(senddata," - ERROR:HOST NOT FOUND")
             data_to_client = str(senddata) + " " + "-" + " " + "ERROR:HOST NOT FOUND"
             csockid.send((data_to_client).encode('utf-8'))
         else:
             if(findata2 == "" and findata1 != ""):
-                #print(findata1,"hi :)")
+                print(findata1)
                 data_to_client = findata1
                 csockid.send(data_to_client.encode('utf-8'))
             else:
-                #print(findata2,"hi :)")
+                print(findata2)
                 data_to_client = findata2
                 csockid.send((data_to_client).encode('utf-8'))
 
@@ -121,7 +121,7 @@ def server():
 #     to_client = threading.Thread(name='server', target=server)
 #     to_client.start()
 
-if (len(sys.argv == 6)):
+if (len(sys.argv) == 6):
     lsport = int(sys.argv[1])
     ts1host = sys.argv[2]
     ts1port = int(sys.argv[3])
