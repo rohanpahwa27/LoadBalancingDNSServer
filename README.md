@@ -2,7 +2,7 @@
 Abhishek Modoor (avm67) & Rohan Pahwa (rp930)
 
 LS Functionality: 
-The LS functionality of tracking which TS responded to the query and appropriately timing out if neither TS responded is done by setting an initial sleep that is greater than 2 * timeout for one socket. This is so that if both timeout, there is enough time in between prior to sending the next string. 
+The LS functionality of tracking which TS responded to the query and appropriately timing out if neither TS responded is done by setting an initial sleep in the client that is greater than 2 * timeout for one socket. This is so that if both timeout, there is enough time in between prior to sending the next string. 
 
 Issues:
 There aren't any known issues that is currently not working in our code
